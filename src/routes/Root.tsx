@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import Logo from '../assets/react.svg'
 import { routes } from './routerPaths'
+import Logo from '../assets/react.svg'
 
 export default function Root() {
   return (

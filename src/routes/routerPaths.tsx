@@ -1,7 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from 'react-router-dom'
-import Root from './Root'
 import { Suspense, lazy } from 'react'
+
+import Root from './Root'
+import NoLazy from '../01-lazyload/pages/NoLazy'
+import { lazyLayoutRoutes } from '../01-lazyload/routes'
 
 interface Route {
   path: string
@@ -9,37 +12,18 @@ interface Route {
   name: string
 }
 
-const Lazy1 = lazy(() => import('../01-lazyload/pages/LazyPage1'))
-const Lazy2 = lazy(() => import('../01-lazyload/pages/LazyPage2'))
-const Lazy3 = lazy(() => import('../01-lazyload/pages/LazyPage3'))
+const LazyLayout = lazy(() => import('../01-lazyload/layout/LazyLayout'))
 
 export const routes: Route[] = [
   {
-    path: '/lazy1',
-    element: (
-      <Suspense fallback={<h3>Cargando...</h3>}>
-        <Lazy1 />
-      </Suspense>
-    ),
-    name: 'Lazy Page 1',
+    path: '/lazy-layout',
+    element: <LazyLayout />,
+    name: 'Lazy Layout Dash',
   },
   {
-    path: '/lazy2',
-    element: (
-      <Suspense fallback={<h3>Cargando...</h3>}>
-        <Lazy2 />
-      </Suspense>
-    ),
-    name: 'Lazy Page 2',
-  },
-  {
-    path: '/lazy3',
-    element: (
-      <Suspense fallback={<h3>Cargando...</h3>}>
-        <Lazy3 />
-      </Suspense>
-    ),
-    name: 'Lazy Page 3',
+    path: '/no-lazy',
+    element: <NoLazy />,
+    name: 'No Lazy Load',
   },
 ]
 
@@ -47,6 +31,20 @@ export const routerPaths = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    children: routes,
+    children: [
+      {
+        path: '/lazy-layout',
+        element: (
+          <Suspense fallback={<h3>Cargando...</h3>}>
+            <LazyLayout />
+          </Suspense>
+        ),
+        children: lazyLayoutRoutes,
+      },
+      {
+        path: '/no-lazy',
+        element: <NoLazy />,
+      },
+    ],
   },
 ])
