@@ -10,25 +10,25 @@ export default function Root() {
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? 'nav-active' : '')}
-              to='/'
+              to='/lazy1'
             >
-              Home
+              LazyPage1
             </NavLink>
           </li>
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? 'nav-active' : '')}
-              to='/about'
+              to='/lazy2'
             >
-              About
+              LazyPage2
             </NavLink>
           </li>
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? 'nav-active' : '')}
-              to='/users'
+              to='/lazy3'
             >
-              Users
+              LazyPage3
             </NavLink>
           </li>
         </ul>
