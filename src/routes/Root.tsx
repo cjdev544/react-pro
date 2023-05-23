@@ -12,7 +12,7 @@ export default function Root() {
               className={({ isActive }) => (isActive ? 'nav-active' : '')}
               to='/'
             >
-              Home
+              Shopping
             </NavLink>
           </li>
           <li>
